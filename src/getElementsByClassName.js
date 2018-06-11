@@ -9,6 +9,7 @@ var getElementsByClassName = function(className, node = document.body) {
   // output: an nodelist of all elements that have the classname
   // strategy: have an array of results, and concatenate to current list
 
+  // console.log(node);
   // create an array to keep track of nodes with the target
   var results = [];
   // check if classname is in current node
@@ -20,9 +21,9 @@ var getElementsByClassName = function(className, node = document.body) {
   if (node.hasChildNodes()) {
     // iterate through each child
     for (let i = 0; i < node.childNodes.length; i++) {
-      results.concat(getElementsByClassName(className, node.childNodes[i]));
+      results = results.concat(getElementsByClassName(className, node.childNodes[i]));
     }
   }
   // return the array
-  return results; 
+  return results;
 };
