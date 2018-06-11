@@ -59,14 +59,19 @@ var stringifyJSON = function(obj) {
     result += ']';
     return result;
   }
-  // if (typeof obj === 'object') {
-  //   result = '{';
-  //   for (let key in obj) {
-  //     result += stringifyJSON(key) + ':' stringifyJSON(obj[key]) + ',';
-  //   }
-  //   if (result.length !== 2) {
-  //     result = result.slice(0, result.length - 1);
-  //   }
-  // }
+  if (typeof obj === 'object') {
+    result = '{';
+    for (let key in obj) {
+      if (typeof obj[key] !== 'function' && obj[key] !== undefined) {
+        result += stringifyJSON(key) + ':' + stringifyJSON(obj[key]) + ',';
+      }
+      
+    }
+    if (result.length !== 1) {
+      result = result.slice(0, result.length - 1);
+    }
+    result += '}';
+    return result;
+  }
 
 };
